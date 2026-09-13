@@ -32,95 +32,149 @@ body{margin:0;background:var(--paper);color:var(--ink);
 /* TU:CSS */
 /* O tutorial. Tudo escopado em .tu porque este mesmo bloco vai injetado dentro do
    app, onde `.sheet h2` ja existe com a mesma especificidade - la quem ganha e a
-   ordem, entao o gerador enfia este bloco no fim da folha de estilo. */
+   ordem, entao o gerador enfia este bloco no fim da folha de estilo.
+   Cartaz, nao relatorio: quase nada de prosa, o que ensina e o diagrama. */
 .tu{--pxk:#231A19; --sombra:rgba(35,26,25,.07);
-  max-width:640px;margin:0 auto;padding:0 20px 56px;
+  max-width:660px;margin:0 auto;padding:0 20px 60px;
   font-size:17px;line-height:1.5;color:var(--ink)}
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]) .tu{--pxk:#EFE5D8; --sombra:rgba(0,0,0,.35)}
 }
 :root[data-theme="dark"] .tu{--pxk:#EFE5D8; --sombra:rgba(0,0,0,.35)}
 
-.tu-bl{position:relative;margin:0 0 50px}
-.tu h1,.tu h2,.tu h3,.tu .tu-eyebrow{text-wrap:balance;
+.tu-bl{position:relative;margin:0 0 46px}
+.tu h1,.tu h2,.tu h3,.tu .tu-eyebrow,.tu .tu-tag{text-wrap:balance;
   font-family:Oswald,"Arial Narrow","Helvetica Neue Condensed",Haettenschweiler,sans-serif}
-.tu h1{font-size:clamp(38px,9.5vw,58px);line-height:.98;font-weight:700;margin:6px 0 14px;
-  letter-spacing:-.005em;text-transform:uppercase;color:var(--ink)}
-.tu h2{font-size:clamp(24px,5.2vw,31px);line-height:1.05;font-weight:600;margin:0 0 10px;
-  text-transform:uppercase;letter-spacing:.005em;color:var(--ink)}
-.tu h3{font-size:15px;font-weight:600;margin:0 0 4px;letter-spacing:.04em;
-  text-transform:uppercase;color:var(--ink)}
-.tu .tu-eyebrow{font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--red);margin:0}
-.tu p{margin:0 0 12px;max-width:46ch;font-size:17px;line-height:1.5;color:var(--ink)}
-.tu p:last-child{margin-bottom:0}
-.tu .tu-mut{color:var(--muted)}
-.tu .tu-num{position:absolute;left:-56px;top:2px;font-family:Oswald,"Arial Narrow",sans-serif;
-  font-size:15px;font-weight:600;color:var(--muted);letter-spacing:.1em}
-@media (max-width:840px){.tu .tu-num{display:none}}
+.tu h1{font-size:clamp(44px,12vw,74px);line-height:.9;font-weight:700;margin:0 0 16px;
+  letter-spacing:-.015em;text-transform:uppercase;color:var(--ink)}
+.tu h2{font-size:clamp(22px,4.6vw,27px);line-height:1;font-weight:600;margin:0 0 12px;
+  text-transform:uppercase;letter-spacing:.005em}
+.tu h3{font-size:13px;font-weight:600;margin:0;letter-spacing:.05em;text-transform:uppercase}
+.tu .tu-eyebrow{font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--red);margin:0 0 10px}
+.tu p{margin:0;font-size:16px;line-height:1.45}
+.tu .tu-lede{font-size:19px;line-height:1.35;max-width:26ch;color:var(--ink)}
 
-.tu .tu-reguas{height:9px;margin:0 0 22px;background:
+/* etiqueta de secao: vertical na margem quando cabe, faixa fina quando nao cabe.
+   Substitui o par titulo+paragrafo de abertura - o bloco se anuncia e cala a boca. */
+.tu .tu-tag{position:absolute;left:-58px;top:2px;margin:0;
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--red);white-space:nowrap}
+.tu .tu-tag i{font-style:normal;color:var(--muted);letter-spacing:.1em}
+@media (max-width:860px){
+  .tu .tu-tag{position:static;writing-mode:horizontal-tb;transform:none;
+    display:flex;align-items:center;gap:10px;margin:0 0 12px}
+  .tu .tu-tag::after{content:"";flex:1;height:2px;background:var(--red);opacity:.35}
+}
+
+.tu .tu-reguas{height:9px;margin:0 0 18px;background:
   linear-gradient(var(--ink),var(--ink)) 0 0/100% 4px no-repeat,
   linear-gradient(var(--red),var(--red)) 0 7px/100% 2px no-repeat}
 
 /* os bichos sentam na borda da coluna; sem espaco de sobra, viram selo no alto do bloco */
-.tu .tu-bicho{position:absolute;width:96px;line-height:0;pointer-events:none;z-index:1}
+.tu .tu-bicho{position:absolute;width:92px;line-height:0;pointer-events:none;z-index:1}
 .tu .tu-bicho svg{width:100%;height:auto;image-rendering:pixelated;
   filter:drop-shadow(2px 3px 0 var(--sombra))}
-.tu .tu-bicho.dir{right:-118px;top:0}
-.tu .tu-bicho.esq{left:-118px;top:0}
-@media (max-width:900px){
-  .tu .tu-bicho{position:static;width:64px;margin:0 0 6px}
+.tu .tu-bicho.dir{right:-114px;top:0}
+.tu .tu-bicho.esq{left:-114px;top:0}
+@media (max-width:920px){
+  .tu .tu-bicho{position:static;width:60px;margin:0 0 4px}
   .tu .tu-bicho.dir{margin-left:auto}
 }
 
-.tu .tu-letras{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:8px;
-  margin:14px 0 0;padding:0;list-style:none}
-.tu .tu-letras li{background:var(--card);border:1px solid var(--rule);border-radius:8px;
-  padding:9px 6px 8px;text-align:center}
-.tu .tu-letras li > b{display:block;font-size:27px;font-weight:600;line-height:1.1}
-.tu .tu-letras span{display:block;font-size:12.5px;color:var(--muted);margin-top:3px}
-.tu .tu-letras span b{display:inline;font-size:inherit;color:var(--ink)}
-.tu .tu-letras li.viu{border-color:var(--ok)}
-.tu .tu-letras li.viu > b{color:var(--ok)}
-.tu .tu-letras li.trai{border-color:var(--red)}
-.tu .tu-letras li.trai > b{color:var(--red)}
-.tu .tu-letras li em{font-style:normal;display:block;font-size:11.5px;color:var(--red);margin-top:2px}
+/* faixa das seis faceis: tira de glifos entre dois filetes, sem cartao nenhum */
+.tu .tu-faixa{display:grid;grid-template-columns:repeat(auto-fit,minmax(60px,1fr));
+  border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);margin:0}
+.tu .tu-faixa div{padding:13px 3px 11px;text-align:center;border-right:1px solid var(--rule)}
+.tu .tu-faixa div:last-child{border-right:0}
+.tu .tu-faixa b{display:block;font-size:clamp(28px,7vw,36px);line-height:1;font-weight:600}
+.tu .tu-faixa i{display:block;font-style:normal;font-size:14px;font-weight:600;
+  color:var(--ok);margin-top:7px;letter-spacing:.06em}
+.tu .tu-faixa s{display:block;text-decoration:none;font-size:11px;color:var(--muted);margin-top:3px}
 
-.tu .tu-palavras{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:9px;
-  margin:16px 0 0;padding:0;list-style:none}
+/* mapa palavra->leitura: cada letra sobre a sua, filete vermelho embaixo */
+.tu .tu-mapa{display:flex;flex-wrap:wrap;align-items:flex-end;gap:3px;margin:20px 0 0}
+.tu .tu-mapa span{text-align:center;padding:0 5px 7px;border-bottom:3px solid var(--red)}
+.tu .tu-mapa b{display:block;font-size:clamp(26px,6vw,32px);font-weight:600;line-height:1}
+.tu .tu-mapa i{display:block;font-style:normal;font-size:12px;color:var(--muted);
+  margin-top:5px;letter-spacing:.12em}
+.tu .tu-mapa em{font-style:normal;align-self:center;margin:0 0 8px 14px;
+  font-size:14px;color:var(--muted)}
+
+/* as traidoras: o diagrama principal da pagina. leitura errada riscada, seta, certa */
+.tu .tu-trai{display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--rule);border:1px solid var(--rule);margin:0;padding:0;list-style:none}
+.tu .tu-trai li{background:var(--card);padding:14px 12px 13px;
+  display:flex;align-items:center;justify-content:center;gap:12px}
+.tu .tu-trai b{font-size:clamp(38px,9vw,50px);line-height:.85;font-weight:600;color:var(--red);flex:0 0 auto}
+.tu .tu-trai span{display:flex;align-items:baseline;gap:9px}
+.tu .tu-trai s{font-size:21px;line-height:1;color:var(--muted);
+  text-decoration-color:var(--red);text-decoration-thickness:2px}
+.tu .tu-trai u{text-decoration:none;font-size:23px;line-height:1;font-weight:600;
+  color:var(--ok);letter-spacing:.02em}
+@media (max-width:430px){.tu .tu-trai{grid-template-columns:repeat(2,1fr)}}
+.tu .tu-trai u::before{content:"→ ";color:var(--muted);font-weight:400;font-size:15px}
+
+/* as dezoito novas: grade densa, so glifo, som e exemplo minusculo */
+.tu .tu-novas{display:grid;grid-template-columns:repeat(6,1fr);
+  gap:1px;background:var(--rule);border:1px solid var(--rule);margin:0;padding:0;list-style:none}
+.tu .tu-novas li{background:var(--card);padding:10px 4px 9px;text-align:center}
+.tu .tu-novas b{display:block;font-size:26px;font-weight:600;line-height:1.05}
+.tu .tu-novas i{display:block;font-style:normal;font-size:13px;font-weight:600;
+  color:var(--ok);margin-top:5px}
+.tu .tu-novas s{display:block;text-decoration:none;font-size:10.5px;color:var(--muted);margin-top:1px}
+@media (max-width:520px){.tu .tu-novas{grid-template-columns:repeat(3,1fr)}}
+
+/* os dois mudos: faixa larga, dois glifos gigantes e uma linha */
+.tu .tu-mudos{display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+  border-top:3px solid var(--ink);border-bottom:1px solid var(--rule);padding:16px 0}
+.tu .tu-mudos b{font-size:clamp(46px,13vw,64px);line-height:.85;font-weight:600;color:var(--muted)}
+.tu .tu-mudos div{flex:1 1 190px}
+.tu .tu-mudos p{max-width:30ch}
+.tu .tu-mudos em{font-style:normal;display:block;font-size:13.5px;color:var(--muted);
+  margin-top:7px;letter-spacing:.02em}
+
+/* cartas de leitura: o unico lugar interativo */
+.tu .tu-palavras{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+  gap:1px;background:var(--rule);border:1px solid var(--rule);margin:0;padding:0;list-style:none}
 .tu .tu-pc{width:100%;display:block;text-align:left;font-family:inherit;color:var(--ink);
-  background:var(--card);border:1px solid var(--rule);border-radius:10px;
-  padding:11px 12px 10px;cursor:pointer}
-.tu .tu-pc:hover{border-color:var(--muted)}
-.tu .tu-pc:focus-visible{outline:2px solid var(--red);outline-offset:2px}
-.tu .tu-pc b{display:block;font-size:27px;font-weight:600;line-height:1.15;word-break:break-word}
-.tu .tu-resp{display:none;margin-top:5px;padding-top:6px;border-top:1px solid var(--rule)}
+  background:var(--card);border:0;padding:12px 13px 11px;cursor:pointer;min-height:78px}
+.tu .tu-pc:hover{background:var(--paper)}
+.tu .tu-pc:focus-visible{outline:2px solid var(--red);outline-offset:-2px}
+.tu .tu-pc b{display:block;font-size:25px;font-weight:600;line-height:1.15;word-break:break-word}
+.tu .tu-resp{display:none;margin-top:6px}
 .tu .tu-pc.on .tu-resp{display:block}
 .tu .tu-fon{display:block;font-size:16px;font-weight:600;color:var(--ok)}
-.tu .tu-sig{display:block;font-size:14px;color:var(--muted)}
-.tu .tu-toque{display:block;font-size:12px;color:var(--muted);margin-top:6px;letter-spacing:.04em}
+.tu .tu-sig{display:block;font-size:13px;color:var(--muted)}
+.tu .tu-toque{display:block;font-size:19px;line-height:1;color:var(--rule);margin-top:8px}
 .tu .tu-pc.on .tu-toque{display:none}
 
-.tu .tu-tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;
-  margin:16px 0 0;padding:0;list-style:none}
-.tu .tu-tour li{background:var(--card);border:1px solid var(--rule);border-radius:10px;
-  padding:12px 13px}
-.tu .tu-tour p{font-size:15px;color:var(--muted);margin:0;max-width:none}
+/* o tour do app: indice de colofao, nome e cinco palavras */
+.tu .tu-idx{margin:0;padding:0;list-style:none;
+  border-top:3px solid var(--ink);
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:0 26px}
+.tu .tu-idx li{display:flex;align-items:baseline;gap:9px;padding:8px 0;
+  border-bottom:1px solid var(--rule)}
+.tu .tu-idx h3{flex:0 0 auto;color:var(--ink)}
+.tu .tu-idx p{flex:1 1 auto;text-align:right;font-size:13px;color:var(--muted);line-height:1.3}
 
-.tu .tu-nota{border-left:3px solid var(--red);padding:2px 0 2px 14px;margin:16px 0 0;
-  font-size:15.5px;color:var(--muted);max-width:44ch}
+/* o recado unico, em caixa vermelha */
+.tu .tu-chave{border:2px solid var(--red);padding:14px 16px;
+  display:flex;flex-wrap:wrap;gap:12px 24px;align-items:baseline}
+.tu .tu-chave span{font-size:24px;font-weight:600;line-height:1}
+.tu .tu-chave span i{font-style:normal;font-size:14px;font-weight:600;color:var(--ok);
+  margin-left:5px;letter-spacing:.04em}
 
 .tu .tu-cta{display:block;width:100%;text-align:center;background:var(--ink);
-  color:var(--paper);text-decoration:none;border:0;border-radius:12px;padding:19px 16px;
-  font-family:Oswald,"Arial Narrow",sans-serif;font-size:22px;font-weight:600;
-  letter-spacing:.03em;text-transform:uppercase;cursor:pointer}
+  color:var(--paper);text-decoration:none;border:0;border-radius:0;padding:20px 16px;
+  font-family:Oswald,"Arial Narrow",sans-serif;font-size:23px;font-weight:600;
+  letter-spacing:.04em;text-transform:uppercase;cursor:pointer;margin-top:22px}
 .tu .tu-cta:hover{background:var(--red)}
 .tu .tu-cta:focus-visible{outline:3px solid var(--red);outline-offset:3px}
-.tu .tu-sub{text-align:center;font-size:14px;color:var(--muted);margin:10px auto 0;max-width:none}
 
 .tu .tu-alfa{font-size:13px;letter-spacing:.16em;color:var(--muted);text-align:center;
-  word-spacing:.1em;margin:34px 0 8px;opacity:.85;max-width:none}
+  word-spacing:.1em;margin:36px 0 8px;opacity:.85}
 .tu .tu-nyan{display:block;height:30px;width:auto;margin:0 auto;opacity:.95}
 .tu .tu-nyan .trilha{animation:nyan .5s steps(4) infinite}
 .tu .tu-nyan .gato{animation:bob .34s steps(2) infinite}
@@ -135,104 +189,114 @@ body{margin:0;background:var(--paper);color:var(--ink);
 <!-- TU:HTML -->
 <div class="tu">
 
-  <header class="tu-bl" style="margin-top:34px">
+  <header class="tu-bl" style="margin-top:30px">
     <div class="tu-bicho dir" data-bicho="ushanka" aria-hidden="true"></div>
-    <p class="tu-eyebrow">Tutorial relâmpago</p>
+    <p class="tu-eyebrow">33 letras · 5 minutos</p>
     <h1>Você já lê<br>cirílico</h1>
     <div class="tu-reguas"></div>
-    <p>Só falta descobrir. São 33 letras, e boa parte delas você conhece desde a escola. Cinco minutos aqui e a placa russa vira texto.</p>
-    <p class="tu-mut">Ninguém vai falar russo no fim disso. A gente só quer ler o que está escrito.</p>
+    <p class="tu-lede">Doze letras decidem quase tudo. O resto vem junto.</p>
   </header>
 
   <section class="tu-bl">
-    <span class="tu-num">01</span>
-    <h2>As que já são suas</h2>
-    <p>Essas seis fazem exatamente o que parecem fazer. Nenhuma pegadinha.</p>
-    <ul class="tu-letras">
-      <li class="viu"><b>А а</b><span>a de casa</span></li>
-      <li class="viu"><b>Е е</b><span>ié de pé</span></li>
-      <li class="viu"><b>К к</b><span>k de kilo</span></li>
-      <li class="viu"><b>М м</b><span>m de mão</span></li>
-      <li class="viu"><b>О о</b><span>o de bolo</span></li>
-      <li class="viu"><b>Т т</b><span>t de teto</span></li>
-    </ul>
-    <p class="tu-nota">Junte quatro delas: <b>МАМА</b>. Você acabou de ler russo. Pode emoldurar.</p>
+    <p class="tu-tag">Já são suas <i>01</i></p>
+    <div class="tu-faixa">
+      <div><b>А</b><i>a</i><s>casa</s></div>
+      <div><b>Е</b><i>ié</i><s>pé</s></div>
+      <div><b>К</b><i>k</i><s>kilo</s></div>
+      <div><b>М</b><i>m</i><s>mão</s></div>
+      <div><b>О</b><i>o</i><s>bolo</s></div>
+      <div><b>Т</b><i>t</i><s>teto</s></div>
+    </div>
+    <div class="tu-mapa">
+      <span><b>М</b><i>m</i></span>
+      <span><b>А</b><i>a</i></span>
+      <span><b>М</b><i>m</i></span>
+      <span><b>А</b><i>a</i></span>
+      <em>mãe</em>
+    </div>
   </section>
 
   <section class="tu-bl">
-    <span class="tu-num">02</span>
     <div class="tu-bicho esq" data-bicho="babushka" aria-hidden="true"></div>
-    <h2>As traidoras</h2>
-    <p>Estas seis usam roupa emprestada do nosso alfabeto e querem te enganar. São elas que derrubam todo mundo.</p>
-    <ul class="tu-letras">
-      <li class="trai"><b>В в</b><span>som de <b>v</b></span><em>não é b</em></li>
-      <li class="trai"><b>Н н</b><span>som de <b>n</b></span><em>não é h</em></li>
-      <li class="trai"><b>Р р</b><span>som de <b>r</b></span><em>não é p</em></li>
-      <li class="trai"><b>С с</b><span>som de <b>s</b></span><em>não é c</em></li>
-      <li class="trai"><b>У у</b><span>som de <b>u</b></span><em>não é y</em></li>
-      <li class="trai"><b>Х х</b><span>escreve-se <b>kh</b></span><em>soa rr, não é x</em></li>
+    <p class="tu-tag">Traidoras <i>02</i></p>
+    <ul class="tu-trai">
+      <li><b>В</b><span><s>b</s><u>v</u></span></li>
+      <li><b>Н</b><span><s>h</s><u>n</u></span></li>
+      <li><b>Р</b><span><s>p</s><u>r</u></span></li>
+      <li><b>С</b><span><s>c</s><u>s</u></span></li>
+      <li><b>У</b><span><s>y</s><u>u</u></span></li>
+      <li><b>Х</b><span><s>x</s><u>kh</u></span></li>
     </ul>
-    <p class="tu-nota">Por isso <b>РЕСТОРАН</b> não é "pectopah". É restoran, restaurante. E <b>Х</b> se escreve <b>kh</b>: <b>ХЛЕБ</b> é khleb, pão, com aquele som de rr. A babushka está de olho no seu Р.</p>
+    <div class="tu-mapa">
+      <span><b>Р</b><i>r</i></span>
+      <span><b>Е</b><i>e</i></span>
+      <span><b>С</b><i>s</i></span>
+      <span><b>Т</b><i>t</i></span>
+      <span><b>О</b><i>o</i></span>
+      <span><b>Р</b><i>r</i></span>
+      <span><b>А</b><i>a</i></span>
+      <span><b>Н</b><i>n</i></span>
+      <em>restaurante</em>
+    </div>
   </section>
 
   <section class="tu-bl">
-    <span class="tu-num">03</span>
-    <h2>As de cara nova</h2>
-    <p>Formato estranho, som fácil. Ninguém decora isso de primeira, e tudo bem.</p>
-    <ul class="tu-letras">
-      <li><b>Б б</b><span>b de bola</span></li>
-      <li><b>Г г</b><span>g de gato</span></li>
-      <li><b>Д д</b><span>d de dado</span></li>
-      <li><b>Ж ж</b><span>j de jogo</span></li>
-      <li><b>З з</b><span>z de zero</span></li>
-      <li><b>И и</b><span>i de vi</span></li>
-      <li><b>Й й</b><span>i curtinho</span></li>
-      <li><b>Л л</b><span>l de lua</span></li>
-      <li><b>П п</b><span>p de pão</span></li>
-      <li><b>Ф ф</b><span>f de faca</span></li>
-      <li><b>Ц ц</b><span>ts de tsé</span></li>
-      <li><b>Ч ч</b><span>tch de tchau</span></li>
-      <li><b>Ш ш</b><span>ch de chá</span></li>
-      <li><b>Щ щ</b><span>ch mais longo</span></li>
-      <li><b>Ы ы</b><span>i de barriga</span></li>
-      <li><b>Э э</b><span>é de café</span></li>
-      <li><b>Ю ю</b><span>iu de miúdo</span></li>
-      <li><b>Я я</b><span>iá de piada</span></li>
+    <p class="tu-tag">Cara nova <i>03</i></p>
+    <ul class="tu-novas">
+      <li><b>Б</b><i>b</i><s>bola</s></li>
+      <li><b>Г</b><i>g</i><s>gato</s></li>
+      <li><b>Д</b><i>d</i><s>dado</s></li>
+      <li><b>Ж</b><i>j</i><s>jogo</s></li>
+      <li><b>З</b><i>z</i><s>zero</s></li>
+      <li><b>И</b><i>i</i><s>vi</s></li>
+      <li><b>Й</b><i>i</i><s>curto</s></li>
+      <li><b>Л</b><i>l</i><s>lua</s></li>
+      <li><b>П</b><i>p</i><s>pão</s></li>
+      <li><b>Ф</b><i>f</i><s>faca</s></li>
+      <li><b>Ц</b><i>ts</i><s>tsé</s></li>
+      <li><b>Ч</b><i>tch</i><s>tchau</s></li>
+      <li><b>Ш</b><i>ch</i><s>chá</s></li>
+      <li><b>Щ</b><i>ch</i><s>mais longo</s></li>
+      <li><b>Ы</b><i>i</i><s>barriga</s></li>
+      <li><b>Э</b><i>é</i><s>café</s></li>
+      <li><b>Ю</b><i>iu</i><s>miúdo</s></li>
+      <li><b>Я</b><i>iá</i><s>piada</s></li>
     </ul>
-    <p class="tu-nota"><b>Ж</b> é um gato espremido no vidro e faz "j" de jogo. <b>И</b> é um N que caiu pra trás e faz "i". <b>Я</b> é um R de costas e faz "iá". Funciona, é feio, segue o jogo.</p>
   </section>
 
   <section class="tu-bl">
-    <span class="tu-num">04</span>
     <div class="tu-bicho dir" data-bicho="dorme" aria-hidden="true"></div>
-    <h2>As duas que não fazem nada</h2>
-    <p><b>Ь</b> e <b>Ъ</b> não têm som nenhum. Elas só amaciam ou endurecem a letra vizinha e voltam a dormir.</p>
-    <p class="tu-mut">соль sai "sóli". объезд sai "ob-iézd". Quando bater o olho numa delas, siga em frente.</p>
+    <p class="tu-tag">Sem som <i>04</i></p>
+    <div class="tu-mudos">
+      <b>Ь</b><b>Ъ</b>
+      <div>
+        <p>Não soam. Só amaciam ou endurecem a letra ao lado.</p>
+        <em>соль · sóli &nbsp;/&nbsp; объезд · ob-iézd</em>
+      </div>
+    </div>
   </section>
 
   <section class="tu-bl">
-    <span class="tu-num">05</span>
     <div class="tu-bicho esq" data-bicho="cosmo" aria-hidden="true"></div>
-    <h2>Leia agora</h2>
-    <p>Toque em cada carta pra conferir. Vá devagar, letra por letra, do jeito que se lê placa na rua.</p>
+    <p class="tu-tag">Leia agora <i>05</i></p>
+    <h2>Toque para conferir</h2>
     <ul class="tu-palavras" id="tuPalavras"></ul>
-    <p class="tu-nota">Acertou quase tudo? Era pra acertar. Metade do cirílico é vocabulário importado, e placa de rua é onde ele mais aparece.</p>
   </section>
 
   <section class="tu-bl">
-    <span class="tu-num">06</span>
     <div class="tu-bicho dir" data-bicho="matr" aria-hidden="true"></div>
-    <h2>O treino, por dentro</h2>
-    <p>Aparece uma palavra em cirílico, você escreve como ela se lê, o app diz se pegou. Tudo o que vem abaixo é opcional, e dá pra começar sem tocar em nada disso.</p>
-    <ul class="tu-tour" id="tuTour"></ul>
+    <p class="tu-tag">O treino <i>06</i></p>
+    <h2>Cirílico entra,<br>leitura sai</h2>
+    <ul class="tu-idx" id="tuTour"></ul>
   </section>
 
   <section class="tu-bl">
-    <span class="tu-num">07</span>
-    <h2>Uma coisa só</h2>
-    <p>Se for lembrar de um detalhe hoje, que seja este: <b>Р é r, Н é n, С é s, В é v, У é u, Х é kh</b>. O resto vem com as cartas.</p>
+    <p class="tu-tag">Se for lembrar de uma <i>07</i></p>
+    <div class="tu-chave">
+      <span>Р<i>r</i></span><span>Н<i>n</i></span><span>С<i>s</i></span>
+      <span>В<i>v</i></span><span>У<i>u</i></span><span>Х<i>kh</i></span>
+    </div>
     <a class="tu-cta" id="tuCta" href="https://fabrizioloes.github.io/cirilico/">Abrir o treino</a>
-    <p class="tu-sub">Roda no navegador, não precisa de conta, funciona no celular.</p>
   </section>
 
   <p class="tu-alfa">А Б В Г Д Е Ё Ж З И Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ъ Ы Ь Э Ю Я</p>
@@ -308,14 +372,15 @@ var PALAVRAS=[
  ["ХЛЕБ","khleb","pão"],
  ["ВЫХОД","vykhod","saída"],
  ["МОСКВА","moskvá","Moscou"],
- ["СПУТНИК","sputnik","satélite"]
+ ["СПУТНИК","sputnik","satélite"],
+ ["ПАРК","park","parque"]
 ];
 var ul=document.getElementById("tuPalavras");
 for(var i=0;i<PALAVRAS.length;i++){
   var p=PALAVRAS[i],li=document.createElement("li");
   var b=document.createElement("button");
   b.type="button"; b.className="tu-pc"; b.setAttribute("aria-expanded","false");
-  b.innerHTML='<b>'+p[0]+'</b><span class="tu-toque">ver a leitura</span>'+
+  b.innerHTML='<b>'+p[0]+'</b><span class="tu-toque" aria-hidden="true">＋</span>'+
               '<span class="tu-resp"><span class="tu-fon">'+p[1]+'</span>'+
               '<span class="tu-sig">'+p[2]+'</span></span>';
   b.addEventListener("click",function(){
@@ -325,20 +390,18 @@ for(var i=0;i<PALAVRAS.length;i++){
   li.appendChild(b); ul.appendChild(li);
 }
 
-/* ---- o tour do app ---- */
+/* ---- o tour do app: indice enxuto, cinco palavras por linha ---- */
 var TOUR=[
- ["Começar","Tela inicial, botão grande, sem configurar nada. Dá pra brincar com os chips depois."],
- ["Modo","Digitar a leitura, com correção letra a letra, ou só reconhecer, sem teclado, você mesmo diz se acertou."],
- ["Tipo","Só palavras, só frases ou as duas juntas. Frase vem sem teclado, porque transliterar quarenta caracteres no celular cansa."],
- ["Dificuldade","Quatro níveis, de básico a difícil. Começando do zero, deixe só o básico ligado."],
- ["Partida","10, 20, 30 ou 50 cartas, ou 1, 3 e 5 minutos, ou livre, que não acaba nunca. No fim vem o placar com as erradas."],
- ["Baralho","Escolhe as categorias que entram no sorteio. Comidas, placas, números, cidades, dá pra marcar e desmarcar à vontade."],
- ["Tema da partida","Uma categoria só, do começo ao fim. Dá pra treinar só Direções e transporte, por exemplo."],
- ["Tabela","As 33 letras com o nome, o som, um exemplo em português e a armadilha de cada uma. É a cola, consulte sem culpa."],
- ["Palavras","Todas as cartas em lista, por categoria. Serve pra bisbilhotar o que tem dentro sem estar treinando."],
- ["Histórico","Quanto você acertou, em que categoria mais erra e as palavras que mais te derrubam. Dá pra exportar tudo em texto."],
- ["Ajustes","Os mesmos seletores, o progresso guardado no aparelho e o botão de zerar. O treino repete mais o que você erra e quase esquece o que já domina."],
- ["O gatinho da barra","Voa na ponta do progresso. Não faz absolutamente nada. É a parte mais importante do app."]
+ ["Modo","digitar ou reconhecer"],
+ ["Tipo","palavras, frases ou as duas"],
+ ["Dificuldade","quatro níveis"],
+ ["Partida","por cartas, por tempo ou livre"],
+ ["Baralho","quais categorias entram"],
+ ["Tema","uma categoria só"],
+ ["Tabela","as 33 letras, som e armadilha"],
+ ["Palavras","tudo em lista"],
+ ["Histórico","acertos e as que mais derrubam"],
+ ["Ajustes","progresso do aparelho e zerar"]
 ];
 var tl=document.getElementById("tuTour");
 for(var i=0;i<TOUR.length;i++){
