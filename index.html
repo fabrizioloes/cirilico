@@ -187,6 +187,16 @@ noscript{display:block;padding:20px;font-size:16px}
   font-variant-numeric:tabular-nums}
 .chip.on{background:var(--red);border-color:var(--red);color:#FFFCF6}
 .chip.on u{color:#FFFCF6;opacity:.75}
+/* convite ao tutorial: aparece uma vez so, na primeira abertura do aparelho */
+#shTut{z-index:12}
+#shTut .bd{display:flex;flex-direction:column;justify-content:center;padding:20px 18px}
+#shTut h2{font-size:25px;line-height:1.15;font-weight:700;color:var(--ink);
+  text-transform:none;letter-spacing:-.01em;margin:14px 0 9px}
+#shTut p{font-size:17px;line-height:1.45;color:var(--muted);margin:0}
+.tut-pe{padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  border-top:1px solid var(--rule);display:flex;flex-direction:column;gap:9px}
+.tut-pe .btn,.tut-pe .btn.sec{display:block;text-align:center;text-decoration:none;
+  font-size:16px;line-height:1.3;padding:15px 14px}
 /* o tutorial mora fora do app, numa pagina propria do Pages */
 .tut{display:inline-block;margin:7px 0 2px;font-size:14px;font-weight:600;color:var(--red);
   text-decoration:none;border-bottom:1.5px solid var(--rose);padding-bottom:1px}
@@ -314,6 +324,17 @@ noscript{display:block;padding:20px;font-size:16px}
     <div class="resumo" id="iniRes"></div>
     <button class="btn" id="iniGo">Começar</button>
     <button class="btn sec" id="iniCat">Baralho — escolher categorias</button>
+  </div>
+</div>
+
+<div class="sheet" id="shTut">
+  <div class="bd">
+    <h2>Você quer fazer o tutorial?</h2>
+    <p>São cinco minutos e ensina as letras do zero. Ele abre numa aba nova, e o treino fica aqui esperando.</p>
+  </div>
+  <div class="tut-pe">
+    <a class="btn" id="tutSim" href="https://fabrizioloes.github.io/cirilico/tutorial.html" target="_blank" rel="noopener">Sim</a>
+    <button class="btn sec" id="tutNao">Não preciso desse tipo de coisa pois já domino confortavelmente o idioma</button>
   </div>
 </div>
 
@@ -468,6 +489,7 @@ function marcaErro(dig, alvo){
 // entram quando ele ligar em Ajustes, nao por conta propria.
 // partida: 0 e livre (sorteio sem fim, como era antes do M4). 20 e o padrao de quem
 // abre pela primeira vez; quem ja tinha cir3 gravado nao tem a chave e fica com 20 tambem.
+var PRIMEIRA = false;   // nem cir3 nem cir2 no aparelho: e a primeira vez aqui
 var ST = {box:{}, vistas:0, cats:null, modo:"dig", tipo:"p", digFrase:false,
           difs:[1,2,3,4], fmt:"n20", tema:""};
 function salva(){ try{ localStorage.setItem("cir3", JSON.stringify(ST)); }catch(e){} }
@@ -482,6 +504,7 @@ function salva(){ try{ localStorage.setItem("cir3", JSON.stringify(ST)); }catch(
     raw = localStorage.getItem("cir3");
     if(!raw){ raw = localStorage.getItem("cir2"); velho = !!raw; }
   }catch(e){}
+  PRIMEIRA = !raw;
   if(raw){
     var o = null;
     try{ o = JSON.parse(raw); }catch(e){}
@@ -1340,6 +1363,19 @@ document.addEventListener("keydown", function(e){
     if(peBtns.length === 1) peBtns[0]();
   }
 });
+
+/* ---------- convite ao tutorial, uma vez so ---------- */
+(function(){
+  function respondeu(){ ST.tut = 1; salva(); $("shTut").classList.remove("on"); }
+  $("tutSim").onclick = respondeu;      // o href leva para a aba nova sozinho
+  $("tutNao").onclick = respondeu;
+  if(PRIMEIRA && !ST.tut){
+    var gato = document.querySelector("#shIni .nyan");
+    if(gato) $("shTut").querySelector(".bd").insertBefore(gato.cloneNode(true),
+                                                         $("shTut").querySelector("h2"));
+    abre("shTut");
+  }
+})();
 
 marcaModo();
 marcaTipo();
