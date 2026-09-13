@@ -113,6 +113,8 @@ body{margin:0;background:var(--paper);color:var(--ink);
   text-decoration-color:var(--red);text-decoration-thickness:2px}
 .tu .tu-trai u{text-decoration:none;font-size:23px;line-height:1;font-weight:600;
   color:var(--ok);letter-spacing:.02em}
+/* so o X precisa disto: kh e a transliteracao que o treino corrige, rr e o som */
+.tu .tu-trai em{font-style:normal;font-size:13px;color:var(--muted);margin-left:-4px}
 @media (max-width:430px){.tu .tu-trai{grid-template-columns:repeat(2,1fr)}}
 .tu .tu-trai u::before{content:"→ ";color:var(--muted);font-weight:400;font-size:15px}
 
@@ -225,7 +227,7 @@ body{margin:0;background:var(--paper);color:var(--ink);
       <li><b>Р</b><span><s>p</s><u>r</u></span></li>
       <li><b>С</b><span><s>c</s><u>s</u></span></li>
       <li><b>У</b><span><s>y</s><u>u</u></span></li>
-      <li><b>Х</b><span><s>x</s><u>kh</u></span></li>
+      <li><b>Х</b><span><s>x</s><u>kh</u><em>(rr)</em></span></li>
     </ul>
     <div class="tu-mapa">
       <span><b>Р</b><i>r</i></span>
