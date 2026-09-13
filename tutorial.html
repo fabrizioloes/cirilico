@@ -8,136 +8,147 @@
 <title>Cirílico em Cinco Minutos</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap">
 <style>
+/* tokens do treino: a pagina solta precisa deles, o app ja tem os seus */
 :root{
   --ink:#231A19; --paper:#F3EDE3; --card:#FFFCF6; --red:#B02A1F; --ok:#1F6B47;
-  --muted:#6D5E57; --rule:#D9CDBD; --rose:#E7B4A5; --sand:#EADFCB; --tram:.045;
-  --shadow:rgba(35,26,25,.07); --pxk:#231A19;
+  --muted:#6D5E57; --rule:#D9CDBD; --rose:#E7B4A5; --tram:.045;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){--ink:#EFE5D8; --paper:#161110; --card:#211A17;
     --red:#E8796A; --ok:#54BE8C; --muted:#A2938A; --rule:#382C28; --rose:#7B4338;
-    --sand:#2A201C; --tram:.075; --shadow:rgba(0,0,0,.35); --pxk:#EFE5D8}
+    --tram:.075}
 }
 :root[data-theme="dark"]{--ink:#EFE5D8; --paper:#161110; --card:#211A17;
   --red:#E8796A; --ok:#54BE8C; --muted:#A2938A; --rule:#382C28; --rose:#7B4338;
-  --sand:#2A201C; --tram:.075; --shadow:rgba(0,0,0,.35); --pxk:#EFE5D8}
-
+  --tram:.075}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{margin:0;background:var(--paper);color:var(--ink);
   background-image:repeating-linear-gradient(135deg,transparent 0 22px,
     rgba(176,42,31,var(--tram)) 22px 24px);
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  font-size:17px;line-height:1.5}
+  font-size:17px;line-height:1.5;padding-top:34px}
+@keyframes nyan{from{transform:translateX(0)}to{transform:translateX(-16px)}}
+@keyframes bob{0%{transform:translateY(0)}50%{transform:translateY(-1.2px)}100%{transform:translateY(0)}}
+/* TU:CSS */
+/* O tutorial. Tudo escopado em .tu porque este mesmo bloco vai injetado dentro do
+   app, onde `.sheet h2` ja existe com a mesma especificidade - la quem ganha e a
+   ordem, entao o gerador enfia este bloco no fim da folha de estilo. */
+.tu{--pxk:#231A19; --sombra:rgba(35,26,25,.07);
+  max-width:640px;margin:0 auto;padding:0 20px 56px;
+  font-size:17px;line-height:1.5;color:var(--ink)}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .tu{--pxk:#EFE5D8; --sombra:rgba(0,0,0,.35)}
+}
+:root[data-theme="dark"] .tu{--pxk:#EFE5D8; --sombra:rgba(0,0,0,.35)}
 
-.wrap{max-width:640px;margin:0 auto;padding:0 20px 60px}
-.bl{position:relative;margin:0 0 54px}
-h1,h2,h3,.eyebrow{font-family:Oswald,"Arial Narrow",Impact,sans-serif;text-wrap:balance}
-h1{font-size:clamp(40px,10vw,62px);line-height:.98;font-weight:700;margin:6px 0 14px;
-  letter-spacing:-.005em;text-transform:uppercase}
-h2{font-size:clamp(25px,5.4vw,32px);line-height:1.05;font-weight:600;margin:0 0 10px;
-  text-transform:uppercase;letter-spacing:.005em}
-h3{font-size:15px;font-weight:600;margin:0 0 4px;letter-spacing:.04em;text-transform:uppercase}
-.eyebrow{font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+.tu-bl{position:relative;margin:0 0 50px}
+.tu h1,.tu h2,.tu h3,.tu .tu-eyebrow{text-wrap:balance;
+  font-family:Oswald,"Arial Narrow","Helvetica Neue Condensed",Haettenschweiler,sans-serif}
+.tu h1{font-size:clamp(38px,9.5vw,58px);line-height:.98;font-weight:700;margin:6px 0 14px;
+  letter-spacing:-.005em;text-transform:uppercase;color:var(--ink)}
+.tu h2{font-size:clamp(24px,5.2vw,31px);line-height:1.05;font-weight:600;margin:0 0 10px;
+  text-transform:uppercase;letter-spacing:.005em;color:var(--ink)}
+.tu h3{font-size:15px;font-weight:600;margin:0 0 4px;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--ink)}
+.tu .tu-eyebrow{font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
   color:var(--red);margin:0}
-p{margin:0 0 12px;max-width:46ch}
-p:last-child{margin-bottom:0}
-.mut{color:var(--muted)}
-.num{position:absolute;left:-56px;top:2px;font-family:Oswald,sans-serif;font-size:15px;
-  font-weight:600;color:var(--muted);letter-spacing:.1em}
-@media (max-width:840px){.num{display:none}}
+.tu p{margin:0 0 12px;max-width:46ch;font-size:17px;line-height:1.5;color:var(--ink)}
+.tu p:last-child{margin-bottom:0}
+.tu .tu-mut{color:var(--muted)}
+.tu .tu-num{position:absolute;left:-56px;top:2px;font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:15px;font-weight:600;color:var(--muted);letter-spacing:.1em}
+@media (max-width:840px){.tu .tu-num{display:none}}
 
-/* faixa de regras do cartaz */
-.reguas{height:9px;margin:0 0 22px;background:
+.tu .tu-reguas{height:9px;margin:0 0 22px;background:
   linear-gradient(var(--ink),var(--ink)) 0 0/100% 4px no-repeat,
   linear-gradient(var(--red),var(--red)) 0 7px/100% 2px no-repeat}
 
-/* bichos em pixel art, sentados na borda da coluna */
-.bicho{position:absolute;width:96px;line-height:0;pointer-events:none;z-index:1}
-.bicho svg{width:100%;height:auto;image-rendering:pixelated;
-  filter:drop-shadow(2px 3px 0 var(--shadow))}
-.bicho.dir{right:-118px;top:0}
-.bicho.esq{left:-118px;top:0}
+/* os bichos sentam na borda da coluna; sem espaco de sobra, viram selo no alto do bloco */
+.tu .tu-bicho{position:absolute;width:96px;line-height:0;pointer-events:none;z-index:1}
+.tu .tu-bicho svg{width:100%;height:auto;image-rendering:pixelated;
+  filter:drop-shadow(2px 3px 0 var(--sombra))}
+.tu .tu-bicho.dir{right:-118px;top:0}
+.tu .tu-bicho.esq{left:-118px;top:0}
 @media (max-width:900px){
-  .bicho{position:static;width:64px;margin:0 0 6px}
-  .bicho.dir{margin-left:auto}
+  .tu .tu-bicho{position:static;width:64px;margin:0 0 6px}
+  .tu .tu-bicho.dir{margin-left:auto}
 }
 
-/* grades de letras */
-.letras{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:8px;
+.tu .tu-letras{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:8px;
   margin:14px 0 0;padding:0;list-style:none}
-.letras li{background:var(--card);border:1px solid var(--rule);border-radius:8px;
+.tu .tu-letras li{background:var(--card);border:1px solid var(--rule);border-radius:8px;
   padding:9px 6px 8px;text-align:center}
-.letras b{display:block;font-size:27px;font-weight:600;line-height:1.1}
-.letras span{display:block;font-size:12.5px;color:var(--muted);margin-top:3px}
-.letras li.viu{border-color:var(--ok)}
-.letras li.viu b{color:var(--ok)}
-.letras li.trai{border-color:var(--red)}
-.letras li.trai b{color:var(--red)}
-.letras li em{font-style:normal;display:block;font-size:11.5px;color:var(--red);margin-top:2px}
+.tu .tu-letras li > b{display:block;font-size:27px;font-weight:600;line-height:1.1}
+.tu .tu-letras span{display:block;font-size:12.5px;color:var(--muted);margin-top:3px}
+.tu .tu-letras span b{display:inline;font-size:inherit;color:var(--ink)}
+.tu .tu-letras li.viu{border-color:var(--ok)}
+.tu .tu-letras li.viu > b{color:var(--ok)}
+.tu .tu-letras li.trai{border-color:var(--red)}
+.tu .tu-letras li.trai > b{color:var(--red)}
+.tu .tu-letras li em{font-style:normal;display:block;font-size:11.5px;color:var(--red);margin-top:2px}
 
-/* cartas de palavra, clique para virar */
-.palavras{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:9px;
+.tu .tu-palavras{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:9px;
   margin:16px 0 0;padding:0;list-style:none}
-.pc{width:100%;text-align:left;font-family:inherit;color:var(--ink);background:var(--card);
-  border:1px solid var(--rule);border-radius:10px;padding:11px 12px 10px;cursor:pointer;
-  display:block}
-.pc:hover{border-color:var(--muted)}
-.pc:focus-visible{outline:2px solid var(--red);outline-offset:2px}
-.pc b{display:block;font-size:27px;font-weight:600;line-height:1.15;word-break:break-word}
-.pc .resp{display:none;margin-top:5px;padding-top:6px;border-top:1px solid var(--rule)}
-.pc.on .resp{display:block}
-.pc .fon{display:block;font-size:16px;font-weight:600;color:var(--ok)}
-.pc .sig{display:block;font-size:14px;color:var(--muted)}
-.pc .toque{display:block;font-size:12px;color:var(--muted);margin-top:6px;letter-spacing:.04em}
-.pc.on .toque{display:none}
+.tu .tu-pc{width:100%;display:block;text-align:left;font-family:inherit;color:var(--ink);
+  background:var(--card);border:1px solid var(--rule);border-radius:10px;
+  padding:11px 12px 10px;cursor:pointer}
+.tu .tu-pc:hover{border-color:var(--muted)}
+.tu .tu-pc:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.tu .tu-pc b{display:block;font-size:27px;font-weight:600;line-height:1.15;word-break:break-word}
+.tu .tu-resp{display:none;margin-top:5px;padding-top:6px;border-top:1px solid var(--rule)}
+.tu .tu-pc.on .tu-resp{display:block}
+.tu .tu-fon{display:block;font-size:16px;font-weight:600;color:var(--ok)}
+.tu .tu-sig{display:block;font-size:14px;color:var(--muted)}
+.tu .tu-toque{display:block;font-size:12px;color:var(--muted);margin-top:6px;letter-spacing:.04em}
+.tu .tu-pc.on .tu-toque{display:none}
 
-/* o tour do app */
-.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;
+.tu .tu-tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;
   margin:16px 0 0;padding:0;list-style:none}
-.tour li{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:12px 13px}
-.tour p{font-size:15px;color:var(--muted);margin:0;max-width:none}
+.tu .tu-tour li{background:var(--card);border:1px solid var(--rule);border-radius:10px;
+  padding:12px 13px}
+.tu .tu-tour p{font-size:15px;color:var(--muted);margin:0;max-width:none}
 
-.nota{border-left:3px solid var(--red);padding:2px 0 2px 14px;margin:16px 0 0;
+.tu .tu-nota{border-left:3px solid var(--red);padding:2px 0 2px 14px;margin:16px 0 0;
   font-size:15.5px;color:var(--muted);max-width:44ch}
 
-.cta{display:block;text-align:center;background:var(--ink);color:var(--paper);
-  text-decoration:none;border-radius:12px;padding:19px 16px;font-family:Oswald,sans-serif;
-  font-size:22px;font-weight:600;letter-spacing:.03em;text-transform:uppercase}
-.cta:hover{background:var(--red)}
-.cta:focus-visible{outline:3px solid var(--red);outline-offset:3px}
-.sub-cta{text-align:center;font-size:14px;color:var(--muted);margin:10px auto 0}
+.tu .tu-cta{display:block;width:100%;text-align:center;background:var(--ink);
+  color:var(--paper);text-decoration:none;border:0;border-radius:12px;padding:19px 16px;
+  font-family:Oswald,"Arial Narrow",sans-serif;font-size:22px;font-weight:600;
+  letter-spacing:.03em;text-transform:uppercase;cursor:pointer}
+.tu .tu-cta:hover{background:var(--red)}
+.tu .tu-cta:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.tu .tu-sub{text-align:center;font-size:14px;color:var(--muted);margin:10px auto 0;max-width:none}
 
-.alfa{font-size:13px;letter-spacing:.16em;color:var(--muted);text-align:center;
-  word-spacing:.1em;margin:34px 0 8px;opacity:.85}
-.nyan{display:block;height:30px;width:auto;margin:0 auto;opacity:.95}
-.nyan .trilha{animation:nyan .5s steps(4) infinite}
-.nyan .gato{animation:bob .34s steps(2) infinite}
-@keyframes nyan{from{transform:translateX(0)}to{transform:translateX(-16px)}}
-@keyframes bob{0%{transform:translateY(0)}50%{transform:translateY(-1.2px)}100%{transform:translateY(0)}}
-
+.tu .tu-alfa{font-size:13px;letter-spacing:.16em;color:var(--muted);text-align:center;
+  word-spacing:.1em;margin:34px 0 8px;opacity:.85;max-width:none}
+.tu .tu-nyan{display:block;height:30px;width:auto;margin:0 auto;opacity:.95}
+.tu .tu-nyan .trilha{animation:nyan .5s steps(4) infinite}
+.tu .tu-nyan .gato{animation:bob .34s steps(2) infinite}
 @media (prefers-reduced-motion:reduce){
-  .nyan .trilha,.nyan .gato{animation:none}
+  .tu .tu-nyan .trilha,.tu .tu-nyan .gato{animation:none}
 }
+/* /TU:CSS */
 </style>
 </head>
 <body>
 
-<div class="wrap">
+<!-- TU:HTML -->
+<div class="tu">
 
-  <header class="bl" style="margin-top:34px">
-    <div class="bicho dir" data-bicho="ushanka" aria-hidden="true"></div>
-    <p class="eyebrow">Tutorial relâmpago</p>
+  <header class="tu-bl" style="margin-top:34px">
+    <div class="tu-bicho dir" data-bicho="ushanka" aria-hidden="true"></div>
+    <p class="tu-eyebrow">Tutorial relâmpago</p>
     <h1>Você já lê<br>cirílico</h1>
-    <div class="reguas"></div>
+    <div class="tu-reguas"></div>
     <p>Só falta descobrir. São 33 letras, e boa parte delas você conhece desde a escola. Cinco minutos aqui e a placa russa vira texto.</p>
-    <p class="mut">Ninguém vai falar russo no fim disso. A gente só quer ler o que está escrito.</p>
+    <p class="tu-mut">Ninguém vai falar russo no fim disso. A gente só quer ler o que está escrito.</p>
   </header>
 
-  <section class="bl">
-    <span class="num">01</span>
+  <section class="tu-bl">
+    <span class="tu-num">01</span>
     <h2>As que já são suas</h2>
     <p>Essas seis fazem exatamente o que parecem fazer. Nenhuma pegadinha.</p>
-    <ul class="letras">
+    <ul class="tu-letras">
       <li class="viu"><b>А а</b><span>a de casa</span></li>
       <li class="viu"><b>Е е</b><span>ié de pé</span></li>
       <li class="viu"><b>К к</b><span>k de kilo</span></li>
@@ -145,15 +156,15 @@ p:last-child{margin-bottom:0}
       <li class="viu"><b>О о</b><span>o de bolo</span></li>
       <li class="viu"><b>Т т</b><span>t de teto</span></li>
     </ul>
-    <p class="nota">Junte quatro delas: <b>МАМА</b>. Você acabou de ler russo. Pode emoldurar.</p>
+    <p class="tu-nota">Junte quatro delas: <b>МАМА</b>. Você acabou de ler russo. Pode emoldurar.</p>
   </section>
 
-  <section class="bl">
-    <span class="num">02</span>
-    <div class="bicho esq" data-bicho="babushka" aria-hidden="true"></div>
+  <section class="tu-bl">
+    <span class="tu-num">02</span>
+    <div class="tu-bicho esq" data-bicho="babushka" aria-hidden="true"></div>
     <h2>As traidoras</h2>
     <p>Estas seis usam roupa emprestada do nosso alfabeto e querem te enganar. São elas que derrubam todo mundo.</p>
-    <ul class="letras">
+    <ul class="tu-letras">
       <li class="trai"><b>В в</b><span>som de <b>v</b></span><em>não é b</em></li>
       <li class="trai"><b>Н н</b><span>som de <b>n</b></span><em>não é h</em></li>
       <li class="trai"><b>Р р</b><span>som de <b>r</b></span><em>não é p</em></li>
@@ -161,14 +172,14 @@ p:last-child{margin-bottom:0}
       <li class="trai"><b>У у</b><span>som de <b>u</b></span><em>não é y</em></li>
       <li class="trai"><b>Х х</b><span>escreve-se <b>kh</b></span><em>soa rr, não é x</em></li>
     </ul>
-    <p class="nota">Por isso <b>РЕСТОРАН</b> não é "pectopah". É restoran, restaurante. E <b>Х</b> se escreve <b>kh</b>: <b>ХЛЕБ</b> é khleb, pão, com aquele som de rr. A babushka está de olho no seu Р.</p>
+    <p class="tu-nota">Por isso <b>РЕСТОРАН</b> não é "pectopah". É restoran, restaurante. E <b>Х</b> se escreve <b>kh</b>: <b>ХЛЕБ</b> é khleb, pão, com aquele som de rr. A babushka está de olho no seu Р.</p>
   </section>
 
-  <section class="bl">
-    <span class="num">03</span>
+  <section class="tu-bl">
+    <span class="tu-num">03</span>
     <h2>As de cara nova</h2>
     <p>Formato estranho, som fácil. Ninguém decora isso de primeira, e tudo bem.</p>
-    <ul class="letras">
+    <ul class="tu-letras">
       <li><b>Б б</b><span>b de bola</span></li>
       <li><b>Г г</b><span>g de gato</span></li>
       <li><b>Д д</b><span>d de dado</span></li>
@@ -188,48 +199,51 @@ p:last-child{margin-bottom:0}
       <li><b>Ю ю</b><span>iu de miúdo</span></li>
       <li><b>Я я</b><span>iá de piada</span></li>
     </ul>
-    <p class="nota"><b>Ж</b> é um gato espremido no vidro e faz "j" de jogo. <b>И</b> é um N que caiu pra trás e faz "i". <b>Я</b> é um R de costas e faz "iá". Funciona, é feio, segue o jogo.</p>
+    <p class="tu-nota"><b>Ж</b> é um gato espremido no vidro e faz "j" de jogo. <b>И</b> é um N que caiu pra trás e faz "i". <b>Я</b> é um R de costas e faz "iá". Funciona, é feio, segue o jogo.</p>
   </section>
 
-  <section class="bl">
-    <span class="num">04</span>
-    <div class="bicho dir" data-bicho="dorme" aria-hidden="true"></div>
+  <section class="tu-bl">
+    <span class="tu-num">04</span>
+    <div class="tu-bicho dir" data-bicho="dorme" aria-hidden="true"></div>
     <h2>As duas que não fazem nada</h2>
     <p><b>Ь</b> e <b>Ъ</b> não têm som nenhum. Elas só amaciam ou endurecem a letra vizinha e voltam a dormir.</p>
-    <p class="mut">соль sai "sóli". объезд sai "ob-iézd". Quando bater o olho numa delas, siga em frente.</p>
+    <p class="tu-mut">соль sai "sóli". объезд sai "ob-iézd". Quando bater o olho numa delas, siga em frente.</p>
   </section>
 
-  <section class="bl">
-    <span class="num">05</span>
-    <div class="bicho esq" data-bicho="cosmo" aria-hidden="true"></div>
+  <section class="tu-bl">
+    <span class="tu-num">05</span>
+    <div class="tu-bicho esq" data-bicho="cosmo" aria-hidden="true"></div>
     <h2>Leia agora</h2>
     <p>Toque em cada carta pra conferir. Vá devagar, letra por letra, do jeito que se lê placa na rua.</p>
-    <ul class="palavras" id="palavras"></ul>
-    <p class="nota">Acertou quase tudo? Era pra acertar. Metade do cirílico é vocabulário importado, e placa de rua é onde ele mais aparece.</p>
+    <ul class="tu-palavras" id="tuPalavras"></ul>
+    <p class="tu-nota">Acertou quase tudo? Era pra acertar. Metade do cirílico é vocabulário importado, e placa de rua é onde ele mais aparece.</p>
   </section>
 
-  <section class="bl">
-    <span class="num">06</span>
-    <div class="bicho dir" data-bicho="matr" aria-hidden="true"></div>
+  <section class="tu-bl">
+    <span class="tu-num">06</span>
+    <div class="tu-bicho dir" data-bicho="matr" aria-hidden="true"></div>
     <h2>O treino, por dentro</h2>
     <p>Aparece uma palavra em cirílico, você escreve como ela se lê, o app diz se pegou. Tudo o que vem abaixo é opcional, e dá pra começar sem tocar em nada disso.</p>
-    <ul class="tour" id="tour"></ul>
+    <ul class="tu-tour" id="tuTour"></ul>
   </section>
 
-  <section class="bl">
-    <span class="num">07</span>
+  <section class="tu-bl">
+    <span class="tu-num">07</span>
     <h2>Uma coisa só</h2>
     <p>Se for lembrar de um detalhe hoje, que seja este: <b>Р é r, Н é n, С é s, В é v, У é u, Х é kh</b>. O resto vem com as cartas.</p>
-    <a class="cta" href="https://fabrizioloes.github.io/cirilico/">Abrir o treino</a>
-    <p class="sub-cta">Roda no navegador, não precisa de conta, funciona no celular.</p>
+    <a class="tu-cta" id="tuCta" href="https://fabrizioloes.github.io/cirilico/">Abrir o treino</a>
+    <p class="tu-sub">Roda no navegador, não precisa de conta, funciona no celular.</p>
   </section>
 
-  <p class="alfa">А Б В Г Д Е Ё Ж З И Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ъ Ы Ь Э Ю Я</p>
-  <svg class="nyan" viewBox="0 0 64 30" role="img" aria-label="gatinho do arco-íris"><defs><clipPath id="nyc"><rect x="0" y="0" width="36" height="30"/></clipPath></defs><g clip-path="url(#nyc)"><g class="trilha"><rect x="-16" y="6.0" width="8" height="3" fill="#E8544B"/><rect x="-8" y="7.5" width="8" height="3" fill="#E8544B"/><rect x="0" y="6.0" width="8" height="3" fill="#E8544B"/><rect x="8" y="7.5" width="8" height="3" fill="#E8544B"/><rect x="16" y="6.0" width="8" height="3" fill="#E8544B"/><rect x="24" y="7.5" width="8" height="3" fill="#E8544B"/><rect x="32" y="6.0" width="8" height="3" fill="#E8544B"/><rect x="40" y="7.5" width="8" height="3" fill="#E8544B"/><rect x="48" y="6.0" width="8" height="3" fill="#E8544B"/><rect x="-16" y="9.0" width="8" height="3" fill="#E8924B"/><rect x="-8" y="10.5" width="8" height="3" fill="#E8924B"/><rect x="0" y="9.0" width="8" height="3" fill="#E8924B"/><rect x="8" y="10.5" width="8" height="3" fill="#E8924B"/><rect x="16" y="9.0" width="8" height="3" fill="#E8924B"/><rect x="24" y="10.5" width="8" height="3" fill="#E8924B"/><rect x="32" y="9.0" width="8" height="3" fill="#E8924B"/><rect x="40" y="10.5" width="8" height="3" fill="#E8924B"/><rect x="48" y="9.0" width="8" height="3" fill="#E8924B"/><rect x="-16" y="12.0" width="8" height="3" fill="#DEBF4A"/><rect x="-8" y="13.5" width="8" height="3" fill="#DEBF4A"/><rect x="0" y="12.0" width="8" height="3" fill="#DEBF4A"/><rect x="8" y="13.5" width="8" height="3" fill="#DEBF4A"/><rect x="16" y="12.0" width="8" height="3" fill="#DEBF4A"/><rect x="24" y="13.5" width="8" height="3" fill="#DEBF4A"/><rect x="32" y="12.0" width="8" height="3" fill="#DEBF4A"/><rect x="40" y="13.5" width="8" height="3" fill="#DEBF4A"/><rect x="48" y="12.0" width="8" height="3" fill="#DEBF4A"/><rect x="-16" y="15.0" width="8" height="3" fill="#6FB86B"/><rect x="-8" y="16.5" width="8" height="3" fill="#6FB86B"/><rect x="0" y="15.0" width="8" height="3" fill="#6FB86B"/><rect x="8" y="16.5" width="8" height="3" fill="#6FB86B"/><rect x="16" y="15.0" width="8" height="3" fill="#6FB86B"/><rect x="24" y="16.5" width="8" height="3" fill="#6FB86B"/><rect x="32" y="15.0" width="8" height="3" fill="#6FB86B"/><rect x="40" y="16.5" width="8" height="3" fill="#6FB86B"/><rect x="48" y="15.0" width="8" height="3" fill="#6FB86B"/><rect x="-16" y="18.0" width="8" height="3" fill="#5A9BD4"/><rect x="-8" y="19.5" width="8" height="3" fill="#5A9BD4"/><rect x="0" y="18.0" width="8" height="3" fill="#5A9BD4"/><rect x="8" y="19.5" width="8" height="3" fill="#5A9BD4"/><rect x="16" y="18.0" width="8" height="3" fill="#5A9BD4"/><rect x="24" y="19.5" width="8" height="3" fill="#5A9BD4"/><rect x="32" y="18.0" width="8" height="3" fill="#5A9BD4"/><rect x="40" y="19.5" width="8" height="3" fill="#5A9BD4"/><rect x="48" y="18.0" width="8" height="3" fill="#5A9BD4"/><rect x="-16" y="21.0" width="8" height="3" fill="#8A78C8"/><rect x="-8" y="22.5" width="8" height="3" fill="#8A78C8"/><rect x="0" y="21.0" width="8" height="3" fill="#8A78C8"/><rect x="8" y="22.5" width="8" height="3" fill="#8A78C8"/><rect x="16" y="21.0" width="8" height="3" fill="#8A78C8"/><rect x="24" y="22.5" width="8" height="3" fill="#8A78C8"/><rect x="32" y="21.0" width="8" height="3" fill="#8A78C8"/><rect x="40" y="22.5" width="8" height="3" fill="#8A78C8"/><rect x="48" y="21.0" width="8" height="3" fill="#8A78C8"/></g></g><g class="gato"><rect x="29" y="13" width="7" height="2.5" fill="#9AA0A6"/><g fill="#9AA0A6"><rect x="36" y="24" width="4" height="3.5"/><rect x="42" y="24" width="4" height="3.5"/><rect x="48" y="24" width="4" height="3.5"/><rect x="54" y="24" width="4" height="3.5"/></g><rect x="34" y="5" width="19" height="20" fill="#F7CBDD" stroke="#E093B4" stroke-width="1.4"/><g fill="#E0C34A"><rect x="38" y="9" width="2" height="2"/><rect x="45" y="19" width="2" height="2"/></g><g fill="#5A9BD4"><rect x="44" y="10" width="2" height="2"/><rect x="38" y="18" width="2" height="2"/></g><g fill="#E8544B"><rect x="41" y="14" width="2" height="2"/><rect x="47" y="14" width="2" height="2"/></g><path d="M49 6l3 3h-3zM60 6l-3 3h3z" fill="#9AA0A6"/><rect x="48" y="8" width="14" height="15" rx="2" fill="#9AA0A6"/><g fill="#FFFCF6"><rect x="51" y="12" width="3.5" height="3.5"/><rect x="57" y="12" width="3.5" height="3.5"/></g><g fill="#231A19"><rect x="52.5" y="13" width="1.6" height="2.4"/><rect x="58.5" y="13" width="1.6" height="2.4"/><rect x="54.5" y="18" width="3" height="1.3"/></g><g fill="#E7B4A5"><rect x="49" y="16.5" width="2.5" height="2.5"/><rect x="60" y="16.5" width="2.5" height="2.5"/></g></g></svg>
+  <p class="tu-alfa">А Б В Г Д Е Ё Ж З И Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ъ Ы Ь Э Ю Я</p>
+  <svg class="tu-nyan" viewBox="0 0 64 30" role="img" aria-label="gatinho do arco-íris"><defs><clipPath id="tuNyc"><rect x="0" y="0" width="36" height="30"/></clipPath></defs><g clip-path="url(#tuNyc)"><g class="trilha"><rect x="-16" y="6.0" width="8" height="3" fill="#E8544B"/><rect x="-8" y="7.5" width="8" height="3" fill="#E8544B"/><rect x="0" y="6.0" width="8" height="3" fill="#E8544B"/><rect x="8" y="7.5" width="8" height="3" fill="#E8544B"/><rect x="16" y="6.0" width="8" height="3" fill="#E8544B"/><rect x="24" y="7.5" width="8" height="3" fill="#E8544B"/><rect x="32" y="6.0" width="8" height="3" fill="#E8544B"/><rect x="40" y="7.5" width="8" height="3" fill="#E8544B"/><rect x="48" y="6.0" width="8" height="3" fill="#E8544B"/><rect x="-16" y="9.0" width="8" height="3" fill="#E8924B"/><rect x="-8" y="10.5" width="8" height="3" fill="#E8924B"/><rect x="0" y="9.0" width="8" height="3" fill="#E8924B"/><rect x="8" y="10.5" width="8" height="3" fill="#E8924B"/><rect x="16" y="9.0" width="8" height="3" fill="#E8924B"/><rect x="24" y="10.5" width="8" height="3" fill="#E8924B"/><rect x="32" y="9.0" width="8" height="3" fill="#E8924B"/><rect x="40" y="10.5" width="8" height="3" fill="#E8924B"/><rect x="48" y="9.0" width="8" height="3" fill="#E8924B"/><rect x="-16" y="12.0" width="8" height="3" fill="#DEBF4A"/><rect x="-8" y="13.5" width="8" height="3" fill="#DEBF4A"/><rect x="0" y="12.0" width="8" height="3" fill="#DEBF4A"/><rect x="8" y="13.5" width="8" height="3" fill="#DEBF4A"/><rect x="16" y="12.0" width="8" height="3" fill="#DEBF4A"/><rect x="24" y="13.5" width="8" height="3" fill="#DEBF4A"/><rect x="32" y="12.0" width="8" height="3" fill="#DEBF4A"/><rect x="40" y="13.5" width="8" height="3" fill="#DEBF4A"/><rect x="48" y="12.0" width="8" height="3" fill="#DEBF4A"/><rect x="-16" y="15.0" width="8" height="3" fill="#6FB86B"/><rect x="-8" y="16.5" width="8" height="3" fill="#6FB86B"/><rect x="0" y="15.0" width="8" height="3" fill="#6FB86B"/><rect x="8" y="16.5" width="8" height="3" fill="#6FB86B"/><rect x="16" y="15.0" width="8" height="3" fill="#6FB86B"/><rect x="24" y="16.5" width="8" height="3" fill="#6FB86B"/><rect x="32" y="15.0" width="8" height="3" fill="#6FB86B"/><rect x="40" y="16.5" width="8" height="3" fill="#6FB86B"/><rect x="48" y="15.0" width="8" height="3" fill="#6FB86B"/><rect x="-16" y="18.0" width="8" height="3" fill="#5A9BD4"/><rect x="-8" y="19.5" width="8" height="3" fill="#5A9BD4"/><rect x="0" y="18.0" width="8" height="3" fill="#5A9BD4"/><rect x="8" y="19.5" width="8" height="3" fill="#5A9BD4"/><rect x="16" y="18.0" width="8" height="3" fill="#5A9BD4"/><rect x="24" y="19.5" width="8" height="3" fill="#5A9BD4"/><rect x="32" y="18.0" width="8" height="3" fill="#5A9BD4"/><rect x="40" y="19.5" width="8" height="3" fill="#5A9BD4"/><rect x="48" y="18.0" width="8" height="3" fill="#5A9BD4"/><rect x="-16" y="21.0" width="8" height="3" fill="#8A78C8"/><rect x="-8" y="22.5" width="8" height="3" fill="#8A78C8"/><rect x="0" y="21.0" width="8" height="3" fill="#8A78C8"/><rect x="8" y="22.5" width="8" height="3" fill="#8A78C8"/><rect x="16" y="21.0" width="8" height="3" fill="#8A78C8"/><rect x="24" y="22.5" width="8" height="3" fill="#8A78C8"/><rect x="32" y="21.0" width="8" height="3" fill="#8A78C8"/><rect x="40" y="22.5" width="8" height="3" fill="#8A78C8"/><rect x="48" y="21.0" width="8" height="3" fill="#8A78C8"/></g></g><g class="gato"><rect x="29" y="13" width="7" height="2.5" fill="#9AA0A6"/><g fill="#9AA0A6"><rect x="36" y="24" width="4" height="3.5"/><rect x="42" y="24" width="4" height="3.5"/><rect x="48" y="24" width="4" height="3.5"/><rect x="54" y="24" width="4" height="3.5"/></g><rect x="34" y="5" width="19" height="20" fill="#F7CBDD" stroke="#E093B4" stroke-width="1.4"/><g fill="#E0C34A"><rect x="38" y="9" width="2" height="2"/><rect x="45" y="19" width="2" height="2"/></g><g fill="#5A9BD4"><rect x="44" y="10" width="2" height="2"/><rect x="38" y="18" width="2" height="2"/></g><g fill="#E8544B"><rect x="41" y="14" width="2" height="2"/><rect x="47" y="14" width="2" height="2"/></g><path d="M49 6l3 3h-3zM60 6l-3 3h3z" fill="#9AA0A6"/><rect x="48" y="8" width="14" height="15" rx="2" fill="#9AA0A6"/><g fill="#FFFCF6"><rect x="51" y="12" width="3.5" height="3.5"/><rect x="57" y="12" width="3.5" height="3.5"/></g><g fill="#231A19"><rect x="52.5" y="13" width="1.6" height="2.4"/><rect x="58.5" y="13" width="1.6" height="2.4"/><rect x="54.5" y="18" width="3" height="1.3"/></g><g fill="#E7B4A5"><rect x="49" y="16.5" width="2.5" height="2.5"/><rect x="60" y="16.5" width="2.5" height="2.5"/></g></g></svg>
 
 </div>
+<!-- /TU:HTML -->
 
 <script>
+/* TU:JS */
+(function(){
 /* ---- pixel art: cada bicho e uma grade de caracteres, uma cor por letra ---- */
 var PAL={k:"var(--pxk)",f:"#D9A05B",d:"#B87A3C",w:"#FFFCF6",r:"#B02A1F",p:"#E7B4A5",
          b:"#6B4A2F",g:"#9AA0A6",y:"#E0C34A",s:"#5A9BD4"};
@@ -296,14 +310,14 @@ var PALAVRAS=[
  ["МОСКВА","moskvá","Moscou"],
  ["СПУТНИК","sputnik","satélite"]
 ];
-var ul=document.getElementById("palavras");
+var ul=document.getElementById("tuPalavras");
 for(var i=0;i<PALAVRAS.length;i++){
   var p=PALAVRAS[i],li=document.createElement("li");
   var b=document.createElement("button");
-  b.type="button"; b.className="pc"; b.setAttribute("aria-expanded","false");
-  b.innerHTML='<b>'+p[0]+'</b><span class="toque">ver a leitura</span>'+
-              '<span class="resp"><span class="fon">'+p[1]+'</span>'+
-              '<span class="sig">'+p[2]+'</span></span>';
+  b.type="button"; b.className="tu-pc"; b.setAttribute("aria-expanded","false");
+  b.innerHTML='<b>'+p[0]+'</b><span class="tu-toque">ver a leitura</span>'+
+              '<span class="tu-resp"><span class="tu-fon">'+p[1]+'</span>'+
+              '<span class="tu-sig">'+p[2]+'</span></span>';
   b.addEventListener("click",function(){
     var on=this.classList.toggle("on");
     this.setAttribute("aria-expanded",on?"true":"false");
@@ -326,13 +340,14 @@ var TOUR=[
  ["Ajustes","Os mesmos seletores, o progresso guardado no aparelho e o botão de zerar. O treino repete mais o que você erra e quase esquece o que já domina."],
  ["O gatinho da barra","Voa na ponta do progresso. Não faz absolutamente nada. É a parte mais importante do app."]
 ];
-var tl=document.getElementById("tour");
+var tl=document.getElementById("tuTour");
 for(var i=0;i<TOUR.length;i++){
   var li=document.createElement("li");
   li.innerHTML='<h3>'+TOUR[i][0]+'</h3><p>'+TOUR[i][1]+'</p>';
   tl.appendChild(li);
 }
-
+})();
+/* /TU:JS */
 </script>
 </body>
 </html>
